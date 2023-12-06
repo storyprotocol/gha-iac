@@ -28,16 +28,16 @@ extract_args() {
 
 	export WORKDIR=$workdir
 	export GITHUB_TOKEN=$github_token
-  export AWS_ACCESS_KEY_ID=$aws_access_key_id
-  export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
-  export AWS_REGION=$aws_region
-  export AWS_DEFAULT_REGION=$aws_region
-  export TF_CLI_ARGS_init=$tf_cli_args_init
+	export AWS_ACCESS_KEY_ID=$aws_access_key_id
+	export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+	export AWS_REGION=$aws_region
+	export AWS_DEFAULT_REGION=$aws_region
+	export TF_CLI_ARGS_init=$tf_cli_args_init
 	export COMMAND=$command
 }
 
 create_gitconfig() {
-  cat >> ~/.gitconfig <<EOF
+	cat >> ~/.gitconfig <<EOF
 [url "https://oauth2:${GITHUB_TOKEN}@github.com"]
 	insteadOf = https://github.com
 EOF
