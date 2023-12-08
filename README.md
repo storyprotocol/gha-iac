@@ -8,10 +8,10 @@ Snippet:
 
     uses: storyprotocol/gha-iac
     with:
-      workdir: tf/targets/staging
+      workdir: tf/staging
       envblock: |
         GITHUB_TOKEN=xxxxxxx
-        AWS_ACCESS_KEY=xxxxxxxxx
+        AWS_ACCESS_KEY_ID=xxxxxxxxx
         AWS_SECRET_ACCESS_KEY=xxxxxxxxx
         AWS_REGION=xxxxxxx
       command: terraform plan
