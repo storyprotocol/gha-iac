@@ -9,6 +9,7 @@ setup() {
 		echo "--> Work dir "$workdir" does not exist. Exiting..." >&2
 		exit 0
 	fi
+	echo "--> Work dir: $workdir" >&2
 	cd "$workdir"
 
 	set -a
@@ -17,6 +18,7 @@ setup() {
 	set +a
 
 	create_gitconfig
+	echo "TF_CLI_ARGS_init: $TF_CLI_ARGS_init"
 	if [ -n "$TF_CLI_ARGS_init" ]; then
 		restore_tf_modules \
 			&& terraform init
@@ -30,6 +32,7 @@ teardown() {
 
 create_gitconfig() {
 	[ -z "$GITHUB_TOKEN" ] && return 0
+	echo '--> Creating gitconfig...' >&2
 	cat >> ~/.gitconfig <<EOF
 [url "https://oauth2:${GITHUB_TOKEN}@github.com"]
 	insteadOf = https://github.com
@@ -37,6 +40,7 @@ EOF
 }
 
 restore_tf_modules() {
+	echo "TF_MODULES_RESTORE_PATH: $TF_MODULES_RESTORE_PATH"
 	local filename=.terraform.tar.gz
 	local target="$TF_MODULES_RESTORE_PATH"/$filename
 	if [ ! -d .terraform ] \
